@@ -54,13 +54,13 @@ public class GridPanel extends JPanel
 		
 		private void setupLayout()
 		{
-			rowField.setBounds(124, 6, 50, 50);
-			columnField.setBounds(121, 97, 53, 50);
-			inputField.setBounds(121, 53, 50, 50);
-			inputLabel.setBounds(344, 406, 50, 50);
-			columnLabel.setBounds(206, 406, 70, 50);
-			rowLabel.setBounds(64, 406, 50, 50);
-			submitButton.setBounds(0, 0, 50, 50);
+			rowField.setBounds(66, 412, 81, 22);
+			columnField.setBounds(216, 412, 81, 22);
+			inputField.setBounds(353, 412, 81, 22);
+			inputLabel.setBounds(313, 412, 50, 22);
+			columnLabel.setBounds(161, 412, 70, 22);
+			rowLabel.setBounds(29, 412, 50, 22);
+			submitButton.setBounds(198, 459, 81, 22);
 
 
 

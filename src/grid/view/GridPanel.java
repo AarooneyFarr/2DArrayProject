@@ -3,6 +3,7 @@ package grid.view;
 import java.awt.Color;
 
 import javax.swing.*;
+import javax.swing.table.*;
 import grid.controller.GridController;
 
 public class GridPanel extends JPanel
@@ -42,6 +43,7 @@ public class GridPanel extends JPanel
 				//load model
 				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
 				gridTable = new JTable();
+				gridTable.setFillsViewportHeight(true);
 				gridTable.setModel(data);
 				gridPane = new JScrollPane();
 				gridPane.setViewportView(gridTable);
@@ -59,6 +61,7 @@ public class GridPanel extends JPanel
 				this.add(inputLabel);
 				this.add(rowField);
 				this.add(submitButton);
+				this.add(gridPane);
 			}
 
 		private void setupLayout()
@@ -70,6 +73,7 @@ public class GridPanel extends JPanel
 				columnLabel.setBounds(161, 412, 70, 22);
 				rowLabel.setBounds(29, 412, 50, 22);
 				submitButton.setBounds(198, 459, 81, 22);
+				gridPane.setBounds(6,6,488,394);
 
 			}
 
@@ -77,5 +81,7 @@ public class GridPanel extends JPanel
 			{
 
 			}
+		
+		
 
 	}

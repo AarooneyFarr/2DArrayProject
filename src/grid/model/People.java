@@ -30,7 +30,7 @@ public abstract class People extends JPanel
 				ageLabel2 = new JLabel("Age: ");
 				commentsLabel = new JLabel(comments);
 				commentsLabel2 = new JLabel("Comments: ");
-				this.peoplePic = new JLabel(new ImageIcon(People.class.getResource("/poke/view/images/pokeball.jpeg")),
+				peoplePic = new JLabel(new ImageIcon(People.class.getResource("/poke/view/images/pokeball.jpeg")),
 						JLabel.CENTER);
 				
 				setupPanel();
@@ -94,7 +94,7 @@ public abstract class People extends JPanel
 				gridIcon = new ImageIcon(getClass().getResource(path + name + extension));
 				peoplePic.setIcon(gridIcon);
 			} catch (NullPointerException missingFile) {
-				gridIcon = new ImageIcon(getClass().getResource(path + defaultName + ".jpeg"));
+				gridIcon = new ImageIcon(getClass().getResource(path + defaultName + ".png"));
 				peoplePic.setIcon(gridIcon);
 			}
 

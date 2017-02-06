@@ -18,7 +18,9 @@ public class GridPanel extends JPanel
 		private GridController baseController;
 		private JTable gridTable;
 		private JScrollPane gridPane;
-
+		private ImageIcon gridIcon;
+		private JLabel peoplePic;
+		
 		public GridPanel(GridController baseController)
 			{
 				super();
@@ -31,7 +33,9 @@ public class GridPanel extends JPanel
 				columnLabel = new JLabel("Column: ");
 				rowLabel = new JLabel("Row: ");
 				submitButton = new JButton("Submit");
-
+				gridIcon = new ImageIcon();
+				peoplePic = new JLabel();
+				
 				setupTable();
 				setupPanel();
 				setupLayout();
@@ -62,6 +66,8 @@ public class GridPanel extends JPanel
 				this.add(rowField);
 				this.add(submitButton);
 				this.add(gridPane);
+				
+				//this.add(peoplePic);
 			}
 
 		private void setupLayout()
@@ -74,6 +80,7 @@ public class GridPanel extends JPanel
 				rowLabel.setBounds(29, 412, 50, 22);
 				submitButton.setBounds(198, 459, 81, 22);
 				gridPane.setBounds(6,6,488,394);
+				
 
 			}
 
@@ -82,6 +89,22 @@ public class GridPanel extends JPanel
 
 			}
 		
+		public void changeImageDisplay(String name) {
+
+			String path = "/grid/view/images/";
+			String defaultName = "25";
+			String extension = ".png";
+			try {
+				gridIcon = new ImageIcon(getClass().getResource(path + name + extension));
+				peoplePic.setIcon(gridIcon);
+			} catch (NullPointerException missingFile) {
+				gridIcon = new ImageIcon(getClass().getResource(path + defaultName + ".png"));
+				peoplePic.setIcon(gridIcon);
+			}
+
+			repaint();
+
+		}
 		
 
 	}

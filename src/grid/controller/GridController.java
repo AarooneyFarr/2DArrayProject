@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
+import javax.swing.JOptionPane;
 
 
 public class GridController
@@ -17,8 +18,7 @@ public class GridController
 
 		public GridController()
 			{
-				setupPeopleDex();
-				setupPeople();
+				
 				appFrame = new GridFrame(this);
 				peopleDex = new Vector<People>();
 				people = new Image[5][5];
@@ -26,7 +26,8 @@ public class GridController
 
 		public void start()
 			{
-
+				setupPeopleDex();
+				setupPeople();
 			}
 
 		public GridFrame getFrame()
@@ -90,22 +91,28 @@ public class GridController
 
 		public void setupPeople()
 			{
-				for (int person = 0; person < peopleDex.size(); person++)
-					{
-						for (Image[] row : people)
+				
+				int person = 0;
+					
+						for ( int row = 0 ;   row < people.length; row++ )
 							{
-								for (Image currentPerson : row)
+								for (int col = 0; col < people[0].length; col++)
 									{
-										BufferedImage img = null;
+										   System.out.println("/grid/view/images/" + peopleDex.elementAt(person).getName() + ".png");
 										try {
-										    img = ImageIO.read(new File(peopleDex.elementAt(person).getName() + ".png"));
-										} catch (IOException e) {
+											File imageFile = new File(getClass().getResource("/grid/view/images/" + peopleDex.elementAt(person).getName() + ".png").getPath());
+										    people[row][col] = ImageIO.read(imageFile);
+										 
+										} catch (IOException e) 
+											{
+											
+											System.out.println("The thing burped on " + peopleDex.elementAt(person).getName());
 										}
-										
+										person += 1;
 										
 									}
 							}
-					}
+					
 			}
 
 		public Image[][] getGrid()

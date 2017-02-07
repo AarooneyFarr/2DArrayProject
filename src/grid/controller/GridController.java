@@ -30,7 +30,11 @@ public class GridController
 			{
 				setupPeopleDex();
 				setupPeople();
+<<<<<<< Updated upstream
 				appPanel.setupTable();
+=======
+				
+>>>>>>> Stashed changes
 			}
 
 		public GridFrame getFrame()

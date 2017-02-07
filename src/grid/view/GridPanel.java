@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.*;
 import javax.swing.table.*;
 import grid.controller.GridController;
+import grid.controller.*;
+import java.awt.event.*;
 
 public class GridPanel extends JPanel
 	{
@@ -42,15 +44,24 @@ public class GridPanel extends JPanel
 				setupListeners();
 			}
 
-		private void setupTable()
+		public void setupTable()
 			{
 				//load model
 				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
-				gridTable = new JTable();
+				gridTable = new JTable(data)
+						{
+						
+					public Class getColumnClass(int column)
+					{
+						return getValueAt(0, column).getClass();
+					}
+						};
 				gridTable.setFillsViewportHeight(true);
 				gridTable.setModel(data);
 				gridPane = new JScrollPane();
 				gridPane.setViewportView(gridTable);
+				
+				
 			}
 
 		private void setupPanel()
@@ -86,7 +97,13 @@ public class GridPanel extends JPanel
 
 		private void setupListeners()
 			{
-
+			submitButton.addActionListener(new ActionListener()
+					{
+				public void actionPerformed(ActionEvent evt)
+				{
+				//	setupTable();
+				}
+					});
 			}
 		
 		public void changeImageDisplay(String name) {

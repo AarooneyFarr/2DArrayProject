@@ -20,7 +20,7 @@ public class GridController
 		public GridController()
 			{
 				
-				appFrame = new GridFrame(this);
+				
 				peopleDex = new Vector<People>();
 				people = new ImageIcon[5][5];
 				appPanel = new GridPanel(this);
@@ -30,11 +30,8 @@ public class GridController
 			{
 				setupPeopleDex();
 				setupPeople();
-<<<<<<< Updated upstream
-				appPanel.setupTable();
-=======
-				
->>>>>>> Stashed changes
+				appFrame = new GridFrame(this);
+
 			}
 
 		public GridFrame getFrame()
@@ -109,7 +106,7 @@ public class GridController
 										
 											//String imageFile = new String(getClass().getResource("/grid/view/images/" + peopleDex.elementAt(person).getName() + ".png").getPath());
 										    people[row][col] = new ImageIcon(getClass().getResource("/grid/view/images/" + peopleDex.elementAt(person).getName() + ".png"));
-										 
+										    //people[row][col]
 										
 										person += 1;
 										
@@ -122,6 +119,10 @@ public class GridController
 			{
 				return people;
 			}
+		public Vector<People> getPeople()
+		{
+			return peopleDex;
+		}
 		
 		
 	}

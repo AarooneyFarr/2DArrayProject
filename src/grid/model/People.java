@@ -37,7 +37,7 @@ public abstract class People
 
 		public String toString()
 			{
-				return name;
+				return name + " Age: " + age + " Comments: " + comments;
 			}
 
 		public String getName()

@@ -49,15 +49,19 @@ public class GridPanel extends JPanel
 				//load model
 				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
 				gridTable = new JTable(data)
-						{
-						
-					public Class getColumnClass(int column)
 					{
-						return getValueAt(0, column).getClass();
-					}
-						};
+				
+					public Class getColumnClass(int column)
+						{
+							return getValueAt(0, column).getClass();
+						}
+					};
 				gridTable.setFillsViewportHeight(true);
+				gridTable.setRowHeight(50);
+				gridTable.setEnabled(false);
 				gridTable.setModel(data);
+				gridTable.setToolTipText(baseController.getPeople().toString());
+				
 				gridPane = new JScrollPane();
 				gridPane.setViewportView(gridTable);
 				

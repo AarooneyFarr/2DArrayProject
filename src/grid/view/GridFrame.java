@@ -44,4 +44,9 @@ public class GridFrame extends JFrame
 
 					});
 			}
+		
+		public GridController getBaseController()
+		{
+			return baseController;
+		}
 	}

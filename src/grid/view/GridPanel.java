@@ -43,13 +43,38 @@ public class GridPanel extends JPanel
 				setupLayout();
 				setupListeners();
 			}
-
+		
+		
 		public void setupTable()
 			{
 				//load model
 				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
 				gridTable = new JTable(data)
 					{
+						
+					public String getToolTipText(MouseEvent e)
+					{
+						String tip = null;
+						java.awt.Point p = e.getPoint();
+						int rowIndex = rowAtPoint(p);
+						int colIndex = columnAtPoint(p);
+						
+						
+						try
+							{
+								int position = ((colIndex + 1) + (rowIndex * 5))-1;
+								String comments = baseController.getPeople().elementAt(position).getComments();
+								String name = baseController.getPeople().elementAt(position).getName();
+								int age = baseController.getPeople().elementAt(position).getAge();
+								tip = "Name: " + name + ". Comments: " + comments + ". Age: " + age;
+							}
+						catch(RuntimeException e1)
+							{
+								
+							}
+						
+						return tip;
+					}
 				
 					public Class getColumnClass(int column)
 						{
@@ -60,7 +85,7 @@ public class GridPanel extends JPanel
 				gridTable.setRowHeight(50);
 				gridTable.setEnabled(false);
 				gridTable.setModel(data);
-				gridTable.setToolTipText(baseController.getPeople().toString());
+				//gridTable.setToolTipText(baseController.getPeople().toString());
 				
 				gridPane = new JScrollPane();
 				gridPane.setViewportView(gridTable);
@@ -126,6 +151,11 @@ public class GridPanel extends JPanel
 			repaint();
 
 		}
+		
+		public GridController getBaseController()
+			{
+				return baseController;
+			}
 		
 
 	}

@@ -114,7 +114,8 @@ public class GridController
 							}
 					
 			}
-
+		
+		
 		public ImageIcon[][] getGrid()
 			{
 				return people;

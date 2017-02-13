@@ -22,7 +22,7 @@ public class GridPanel extends JPanel
 		private JScrollPane gridPane;
 		private ImageIcon gridIcon;
 		private JLabel peoplePic;
-		
+
 		public GridPanel(GridController baseController)
 			{
 				super();
@@ -37,60 +37,57 @@ public class GridPanel extends JPanel
 				submitButton = new JButton("Submit");
 				gridIcon = new ImageIcon();
 				peoplePic = new JLabel();
-				
+
 				setupTable();
 				setupPanel();
 				setupLayout();
 				setupListeners();
 			}
-		
-		
+
 		public void setupTable()
 			{
-				//load model
-				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
+				// load model
+				DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String[] { "one", "two", "three", "four", "five" });
 				gridTable = new JTable(data)
 					{
-						
-					public String getToolTipText(MouseEvent e)
-					{
-						String tip = null;
-						java.awt.Point p = e.getPoint();
-						int rowIndex = rowAtPoint(p);
-						int colIndex = columnAtPoint(p);
-						
-						
-						try
+
+						public String getToolTipText(MouseEvent e)
 							{
-								int position = ((colIndex + 1) + (rowIndex * 5))-1;
-								String comments = baseController.getPeople().elementAt(position).getComments();
-								String name = baseController.getPeople().elementAt(position).getName();
-								int age = baseController.getPeople().elementAt(position).getAge();
-								tip = "Name: " + name + ". Comments: " + comments + ". Age: " + age;
+								String tip = null;
+								java.awt.Point p = e.getPoint();
+								int rowIndex = rowAtPoint(p);
+								int colIndex = columnAtPoint(p);
+
+								try
+									{
+										int position = ((colIndex + 1) + (rowIndex * 5)) - 1;
+										String comments = baseController.getPeople().elementAt(position).getComments();
+										String name = baseController.getPeople().elementAt(position).getName();
+										int age = baseController.getPeople().elementAt(position).getAge();
+										tip = "Name: " + name + ". Comments: " + comments + ". Age: " + age;
+									}
+								catch (RuntimeException e1)
+									{
+
+									}
+
+								return tip;
 							}
-						catch(RuntimeException e1)
+
+						public Class getColumnClass(int column)
 							{
-								
+								return getValueAt(0, column).getClass();
 							}
-						
-						return tip;
-					}
-				
-					public Class getColumnClass(int column)
-						{
-							return getValueAt(0, column).getClass();
-						}
 					};
 				gridTable.setFillsViewportHeight(true);
 				gridTable.setRowHeight(50);
 				gridTable.setEnabled(false);
 				gridTable.setModel(data);
-				//gridTable.setToolTipText(baseController.getPeople().toString());
-				
+				// gridTable.setToolTipText(baseController.getPeople().toString());
+
 				gridPane = new JScrollPane();
 				gridPane.setViewportView(gridTable);
-				
-				
+
 			}
 
 		private void setupPanel()
@@ -106,8 +103,8 @@ public class GridPanel extends JPanel
 				this.add(rowField);
 				this.add(submitButton);
 				this.add(gridPane);
-				
-				//this.add(peoplePic);
+
+				// this.add(peoplePic);
 			}
 
 		private void setupLayout()
@@ -119,8 +116,7 @@ public class GridPanel extends JPanel
 				columnLabel.setBounds(161, 412, 70, 22);
 				rowLabel.setBounds(29, 412, 50, 22);
 				submitButton.setBounds(198, 459, 81, 22);
-				gridPane.setBounds(6,6,488,394);
-				
+				gridPane.setBounds(6, 6, 488, 394);
 
 			}
 
@@ -130,32 +126,46 @@ public class GridPanel extends JPanel
 					{
 				public void actionPerformed(ActionEvent evt)
 				{
-				//	setupTable();
+				try{
+					int col = Integer.parseInt(columnField.getText());
+					int row = Integer.parseInt(rowField.getText());
+					int newAge = Integer.parseInt(inputField.getText());
+					
+					baseController.getPeople().elementAt((((row-1)*5)+ col)-1).setAge(newAge);
+					repaint();
+				}
+				catch(NumberFormatException e)
+					{
+						
+					}
 				}
 					});
 			}
-		
-		public void changeImageDisplay(String name) {
 
-			String path = "/grid/view/images/";
-			String defaultName = "25";
-			String extension = ".png";
-			try {
-				gridIcon = new ImageIcon(getClass().getResource(path + name + extension));
-				peoplePic.setIcon(gridIcon);
-			} catch (NullPointerException missingFile) {
-				gridIcon = new ImageIcon(getClass().getResource(path + defaultName + ".png"));
-				peoplePic.setIcon(gridIcon);
+		public void changeImageDisplay(String name)
+			{
+
+				String path = "/grid/view/images/";
+				String defaultName = "25";
+				String extension = ".png";
+				try
+					{
+						gridIcon = new ImageIcon(getClass().getResource(path + name + extension));
+						peoplePic.setIcon(gridIcon);
+					}
+				catch (NullPointerException missingFile)
+					{
+						gridIcon = new ImageIcon(getClass().getResource(path + defaultName + ".png"));
+						peoplePic.setIcon(gridIcon);
+					}
+
+				repaint();
+
 			}
 
-			repaint();
-
-		}
-		
 		public GridController getBaseController()
 			{
 				return baseController;
 			}
-		
 
 	}

@@ -31,7 +31,7 @@ public class GridPanel extends JPanel
 				rowField = new JTextField();
 				columnField = new JTextField();
 				inputField = new JTextField();
-				inputLabel = new JLabel("Input: ");
+				inputLabel = new JLabel("New Age: ");
 				columnLabel = new JLabel("Column: ");
 				rowLabel = new JLabel("Row: ");
 				submitButton = new JButton("Submit");

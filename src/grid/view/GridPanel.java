@@ -103,6 +103,10 @@ public class GridPanel extends JPanel
 				this.add(rowField);
 				this.add(submitButton);
 				this.add(gridPane);
+				
+				JLabel lblNewLabel = new JLabel("People");
+				lblNewLabel.setBounds(191, 6, 118, 17);
+				add(lblNewLabel);
 
 				// this.add(peoplePic);
 			}
@@ -111,12 +115,12 @@ public class GridPanel extends JPanel
 			{
 				rowField.setBounds(66, 412, 81, 22);
 				columnField.setBounds(216, 412, 81, 22);
-				inputField.setBounds(353, 412, 81, 22);
-				inputLabel.setBounds(313, 412, 50, 22);
+				inputField.setBounds(397, 412, 81, 22);
+				inputLabel.setBounds(313, 412, 72, 22);
 				columnLabel.setBounds(161, 412, 70, 22);
 				rowLabel.setBounds(29, 412, 50, 22);
 				submitButton.setBounds(198, 459, 81, 22);
-				gridPane.setBounds(6, 6, 488, 394);
+				gridPane.setBounds(6, 35, 488, 365);
 
 			}
 
@@ -167,5 +171,4 @@ public class GridPanel extends JPanel
 			{
 				return baseController;
 			}
-
 	}
